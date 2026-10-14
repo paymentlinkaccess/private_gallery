@@ -1,0 +1,20 @@
+import {createClient} from 'https://esm.sh/@supabase/supabase-js@2';
+const supabase=createClient('https://vvavsherdpabfdoskdfo.supabase.co','sb_publishable_tpRYqaEWPQEIHhDuM-7MEA_l5pb82Nx');
+const $=id=>document.getElementById(id);const adminPage=location.pathname.endsWith('/admin.html');
+const login=$('login'),members=$('members'),status=$('memberStatus');
+$('signIn').addEventListener('submit',async e=>{e.preventDefault();const email=$('email').value.trim();const {error}=await supabase.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});$('loginMessage').textContent=error?error.message:'Check your email for your secure sign-in link.'});
+$('logout').addEventListener('click',async()=>{await supabase.auth.signOut();location.reload()});
+async function init(){const {data:{user}}=await supabase.auth.getUser();login.hidden=!!user;members.hidden=!user;if(!user)return;$('account').textContent=user.email||'Signed in';
+const {data:membership,error}=await supabase.from('feed_memberships').select('access_until,lifetime,role').eq('user_id',user.id).maybeSingle();
+if(error){status.textContent='Membership database not configured yet. Contact the site owner.';return}
+const valid=membership&&(membership.lifetime||membership.access_until&&new Date(membership.access_until)>new Date());
+if(adminPage){if(membership?.role!=='admin'){status.textContent='Admin access required.';return}status.textContent='Admin access verified.';$('uploadForm').hidden=false;return}
+if(!valid){status.textContent='No active membership found for this account. If you previously purchased a package, contact the owner to have your access verified. Otherwise subscribe for $15.99/month.';return}
+status.textContent='Welcome to Gallery Feed.';
+const {data:posts,error:postError}=await supabase.from('feed_posts').select('id,title,description,category,created_at,video_path').order('created_at',{ascending:false});
+if(postError){status.textContent=postError.message;return}
+if(!posts?.length){$('posts').textContent='New videos coming soon.';return}
+for(const post of posts){const {data:signed,error:signError}=await supabase.storage.from('feed-videos').createSignedUrl(post.video_path,3600);if(signError)continue;const article=document.createElement('article');article.className='post';const video=document.createElement('video');video.controls=true;video.preload='none';video.playsInline=true;video.src=signed.signedUrl;const details=document.createElement('div');details.className='details';const category=document.createElement('small');category.textContent=post.category;const title=document.createElement('h2');title.textContent=post.title;const date=document.createElement('time');date.textContent=new Date(post.created_at).toLocaleDateString();const description=document.createElement('p');description.textContent=post.description||'';details.append(category,title,date,description);article.append(video,details);$('posts').append(article)}
+}
+if(adminPage){$('uploadForm').addEventListener('submit',async e=>{e.preventDefault();const form=e.currentTarget,button=$('publish'),out=$('uploadStatus'),file=form.video.files[0];if(!file)return;if(file.size>250*1024*1024){out.textContent='File exceeds the 250 MB limit. Compress it first or use dedicated video hosting.';return}button.disabled=true;out.textContent='Uploading... Keep this page open.';try{const {data:{user}}=await supabase.auth.getUser();const path=user.id+'/'+crypto.randomUUID()+'-'+file.name.replace(/[^a-zA-Z0-9._-]/g,'_');const {error:uploadError}=await supabase.storage.from('feed-videos').upload(path,file,{contentType:file.type||'video/mp4',upsert:false});if(uploadError)throw uploadError;const {error:postError}=await supabase.from('feed_posts').insert({title:form.title.value.trim(),description:form.description.value.trim(),category:form.category.value,video_path:path});if(postError)throw postError;out.textContent='Published successfully.';form.reset()}catch(err){out.textContent='Upload failed: '+err.message}finally{button.disabled=false}})}
+supabase.auth.onAuthStateChange(()=>{setTimeout(init,0)});init();
