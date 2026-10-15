@@ -7,9 +7,11 @@ $('logout').addEventListener('click',async()=>{await supabase.auth.signOut();loc
 async function init(){const {data:{user}}=await supabase.auth.getUser();login.hidden=!!user;members.hidden=!user;if(!user)return;$('account').textContent=user.email||'Signed in';
 const {data:membership,error}=await supabase.from('feed_memberships').select('access_until,lifetime,role').eq('user_id',user.id).maybeSingle();
 if(error){status.textContent='Membership database not configured yet. Contact the site owner.';return}
-const valid=membership&&(membership.lifetime||membership.access_until&&new Date(membership.access_until)>new Date());
+const {data:paidAccess,error:accessError}=await supabase.rpc('has_daily_feed_access');
+if(accessError){status.textContent='Unable to verify membership. Please try again shortly.';return}
+const valid=paidAccess===true;
 if(adminPage){if(membership?.role!=='admin'){status.textContent='Admin access required.';return}status.textContent='Admin access verified.';$('uploadForm').hidden=false;$('adminFeedNav').hidden=false;return}
-if(!valid){status.textContent='No active membership found for this account. If you previously purchased a package, contact the owner to have your access verified. Otherwise subscribe for $15.99/month.';return}
+if(!valid){status.textContent='No active Daily Feed subscription was found for this email. If you just paid, please wait a moment and refresh. Otherwise subscribe for $15.99/month.';return}
 status.textContent='Welcome to Gallery Feed.';if(membership?.role==='admin')$('adminBackNav').hidden=false;
 const {data:posts,error:postError}=await supabase.from('feed_posts').select('id,title,description,category,created_at,video_path,media_type').order('created_at',{ascending:false});
 if(postError){status.textContent=postError.message;return}
