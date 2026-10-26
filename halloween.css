@@ -1,0 +1,29 @@
+/* Halloween visual theme — no payment or gallery logic changed */
+:root{--bg:#08040e;--panel:#150b20;--accent:#ff7517;--glow:rgba(255,117,23,.45);--border:rgba(169,79,255,.25)}
+body{background:radial-gradient(circle at 75% 5%,#3c125b 0,transparent 32%),#08040e}
+.site-nav{background:linear-gradient(#090310f5,#0903109c,transparent)}
+.brand{color:#e5a0ff;text-shadow:0 0 15px #ac31ee}
+.brand span,.hero h1 span,.section-head h2 span{color:#ff7517;text-shadow:0 0 25px #f60a}
+.eyebrow{color:#cf8bff}
+.hero{background:radial-gradient(circle at 78% 22%,#9a34e0 0 8%,#4c176c 11%,transparent 30%),linear-gradient(135deg,#08040e,#210b32 70%,#090310)}
+.hero-photo{opacity:.38;filter:grayscale(.3) sepia(.2) hue-rotate(215deg)}
+.hero-shade{background:linear-gradient(90deg,#090310e8,#170a2a80),linear-gradient(0deg,#08040efa,transparent 75%)}
+.hero:before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 45% 85%,#b56aff33,transparent 60%);filter:blur(25px);animation:hauntFog 13s ease-in-out infinite alternate}
+.hero-copy{text-align:center;margin-bottom:20vh}
+.hero h1{font-size:clamp(5rem,12vw,11rem);text-shadow:0 0 28px #7b24aa}
+.hero-btn{background:#15061c;border:2px solid #b22cff;border-radius:30px;box-shadow:0 0 18px #a21dff;color:#ff8b24}
+.hero-btn:hover{box-shadow:0 0 32px #d334ff}
+.halloween-tag{display:inline-block;margin-bottom:22px;color:#d7a1ff;letter-spacing:.3em;font-size:.8rem}
+.halloween-note{color:#e6c0ff;letter-spacing:.16em;margin-top:20px;font-size:.8rem}
+.spooky-moon{position:absolute;right:12%;top:13%;width:clamp(110px,19vw,280px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e9b5ff,#a842e9 58%,#62248b);box-shadow:0 0 80px #a33cdb99;opacity:.65;pointer-events:none}
+.spooky-bats{position:absolute;right:9%;top:35%;font-size:clamp(1.5rem,4vw,3rem);letter-spacing:1rem;color:#07020b;z-index:2;pointer-events:none}
+.spooky-pumpkin{position:absolute;left:5%;bottom:8%;font-size:clamp(3rem,8vw,7rem);filter:drop-shadow(0 0 25px #ff6500);z-index:2;pointer-events:none}
+.spooky-web{position:absolute;top:0;left:0;font-size:clamp(3rem,8vw,7rem);color:#b05af2;opacity:.6;z-index:2;pointer-events:none}
+.portfolio-section{border-color:#60247a}
+.feature-card:hover,.photo-card:hover,.video-card:hover{border-color:#ae48ff;box-shadow:0 0 35px #7422ba55}
+.feature-badge{background:#ff7517}
+.video-card,.feature-video-card{background:radial-gradient(circle,#61228b55,transparent 55%),#100819}
+.modal-inner{background:#11091a}
+@keyframes hauntFog{from{transform:translateX(-6%);opacity:.4}to{transform:translateX(6%);opacity:1}}
+@media(max-width:650px){.hero-copy{margin-bottom:23vh}.spooky-pumpkin{bottom:7%}.spooky-moon{top:17%;right:5%}.spooky-bats{right:3%;top:40%;letter-spacing:.2rem}.hero h1{font-size:clamp(4rem,19vw,6rem)}}
+@media(prefers-reduced-motion:reduce){.hero:before{animation:none}}
