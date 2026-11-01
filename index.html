@@ -3,22 +3,73 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#100719">
+  <meta name="theme-color" content="#09070c">
 
-  <title>Private Gallery</title>
+  <title>Birthday Month — The Diamond Edition | Private Gallery</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500;600&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
   >
 
   <!-- Version number forces browsers to load the newest files -->
   <link rel="stylesheet" href="./styles.css?v=32">
-  <link rel="stylesheet" href="./halloween.css?v=1">
+
   <script src="./gallery.js?v=32" defer></script>
+<style>
+/* November Birthday Month: presentation only; gallery and access scripts stay unchanged. */
+:root{--bg:#09070c;--panel:#160f17;--accent:#ebbad0;--glow:#eaa3c733;--border:#ddbad033}
+body{background:radial-gradient(ellipse at 90% 12%,#6e294329,transparent 40%),var(--bg)}
+.site-nav{position:relative;background:#09070cf5;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:14px}
+.brand{font:500 clamp(17px,2vw,24px) "Playfair Display",Georgia,serif;letter-spacing:.12em}
+.site-nav nav{gap:clamp(12px,2vw,27px)}
+.birthday-hero{display:grid;grid-template-columns:1.04fr 1fr;max-width:1440px;margin:auto;min-height:710px}
+.birthday-portrait{position:relative;overflow:hidden;min-height:710px}
+.birthday-portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 18%;transform:scale(1.45);transform-origin:68% 18%}
+.birthday-portrait:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 68%,#09070c),linear-gradient(0deg,#09070c,transparent 23%)}
+.birthday-copy{align-self:center;text-align:center;padding:65px 30px 65px 12px;position:relative}
+.birthday-kicker{font-size:10px;line-height:1.9;letter-spacing:.26em;color:#dfbfd0}
+.birthday-copy h1{margin:25px 0 0;font-weight:400}
+.birthday-script{display:block;font:400 clamp(80px,9vw,145px)/1.05 "Great Vibes",cursive;color:#f2bad2;text-shadow:0 0 35px #e56c9c44}
+.birthday-month{display:block;font:500 clamp(38px,4.7vw,70px)/1.15 "Playfair Display",Georgia,serif;letter-spacing:.14em;text-transform:uppercase;background:linear-gradient(120deg,#b8b7c0,#fff,#a6a3af);background-clip:text;-webkit-background-clip:text;color:transparent}
+.birthday-edition{display:block;margin:20px 0;font:400 clamp(15px,1.8vw,23px)/1.6 "Playfair Display",Georgia,serif;letter-spacing:.13em;color:#e4dce5}
+.birthday-divider{display:flex;align-items:center;justify-content:center;gap:18px;color:#ddbad0;margin:22px 0}
+.birthday-divider:before,.birthday-divider:after{content:"";width:65px;height:1px;background:#c58cac80}
+.birthday-intro,.birthday-caption{font-size:12px;line-height:2;letter-spacing:.13em;color:#cdbfcb}
+.birthday-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:27px}
+.birthday-button{display:inline-flex;justify-content:center;align-items:center;min-height:50px;padding:16px 24px;border:1px solid #ffe7f4;background:linear-gradient(120deg,#dba8bd,#f6d6e1,#dca4bd);color:#21131f;font-size:10px;font-weight:700;line-height:1.6;letter-spacing:.13em;text-transform:uppercase;box-shadow:0 6px 28px #f0a1cc25;transition:transform .2s}
+.birthday-button:hover{transform:translateY(-2px)}
+.birthday-secondary{background:transparent;color:#f2c3d9;border-color:#b984a0;box-shadow:none}
+.birthday-button:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid #fff;outline-offset:5px}
+.birthday-collection{width:min(1100px,90vw);margin:auto;padding:54px 0 80px;text-align:center;border-top:1px solid var(--border)}
+.birthday-collection h2{font:400 clamp(30px,4vw,48px)/1.25 "Playfair Display",Georgia,serif;margin:12px 0}
+.birthday-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:36px 0 50px}
+.birthday-cards figure{margin:0;background:#160f17;border:1px solid #d4a0ba58;overflow:hidden}
+.birthday-cards img{display:block;width:100%;height:390px;object-fit:cover;object-position:center 20%}
+.birthday-cards figcaption{font:400 20px "Playfair Display",Georgia,serif;padding:20px 10px;color:#eadbe4}
+.birthday-gift{scroll-margin-top:25px;padding:42px 22px;border:1px solid #e9b5d080;background:linear-gradient(135deg,#2b1426,#100a14 65%,#351b2c);box-shadow:0 0 45px #e889bb16}
+.birthday-gift h2{color:#f6c3d8}
+.birthday-gift>p:not(.birthday-kicker){font-size:13px;line-height:2;color:#e6cbd9;margin:20px 0 26px}
+.birthday-gift small{display:block;color:#c7b3c1;font-size:11px;line-height:1.8;margin-top:20px}
+.section-head h2{font-family:"Playfair Display",Georgia,serif;font-size:clamp(30px,5vw,65px);line-height:1.15}
+.portfolio-section{scroll-margin-top:25px}
+.feature-badge{color:#21131f}
+@media(max-width:760px){
+.birthday-hero{display:block;min-height:0}.birthday-portrait{height:460px;min-height:0}
+.birthday-portrait img{object-position:66% 15%;transform:scale(1.6);transform-origin:66% 15%}
+.birthday-portrait:after{background:linear-gradient(0deg,#09070c,transparent 48%)}
+.birthday-copy{padding:0 20px 55px;margin-top:-20px}.birthday-script{font-size:94px}
+.birthday-month{font-size:43px}.birthday-edition{font-size:17px}
+.birthday-cards{grid-template-columns:1fr;max-width:410px;margin:30px auto 40px}.birthday-cards img{height:auto;aspect-ratio:4/5}
+.birthday-collection{padding-top:35px}.site-nav nav a:first-child{display:inline}
+.site-nav nav a{font-size:9px;letter-spacing:.1em}.site-nav{padding:18px 5vw}
+.section-head{flex-wrap:wrap}.section-head h2{font-size:clamp(30px,9vw,50px)}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+</style>
 </head>
 
 <body>
@@ -42,44 +93,33 @@
          HERO
          ============================== -->
 
-    <section class="hero">
-
-      <img
-        id="heroImage"
-        class="hero-photo"
-        alt=""
-      >
-
-      <div class="hero-shade"></div>
-      <div class="spooky-moon" aria-hidden="true"></div>
-      <div class="spooky-bats" aria-hidden="true">🦇 🦇</div>
-      <div class="spooky-pumpkin" aria-hidden="true">🎃</div>
-      <div class="spooky-web" aria-hidden="true">🕸</div>
-
-      <div class="hero-copy">
-
-        <p class="halloween-tag">✦ WELCOME TO MY HAUNTED WORLD ✦</p>
-
-        <h1>
-          PRIVATE <span>GALLERY</span>
-        </h1>
-
-        <a
-          class="hero-btn"
-          href="#recent"
-        >
-          ENTER IF YOU DARE <span>↘</span>
-        </a>
-        <p class="halloween-note">EXCLUSIVE CONTENT • PHOTOS • VIDEOS</p>
-
+    <section class="birthday-hero" aria-labelledby="birthday-title">
+      <div class="birthday-portrait"><img id="birthdayHeroImage" src="./birthday/Glamorous%20Birthday%20Champagne%20Fantasy.png" alt="Birthday portrait in a sparkling champagne glass" fetchpriority="high" width="1024" height="1536"></div>
+      <div class="birthday-copy">
+        <p class="birthday-kicker">✧ NOVEMBER · MY BIRTHDAY MONTH ✧</p>
+        <h1 id="birthday-title"><span class="birthday-script">Birthday</span><span class="birthday-month">Month</span><span class="birthday-edition">— The Diamond Edition —</span></h1>
+        <div class="birthday-divider" aria-hidden="true">◇</div>
+        <p class="birthday-intro">A little luxury. A little mystery.<br>A whole month to celebrate.</p>
+        <div class="birthday-actions"><a class="birthday-button" href="#recent">Explore the Gallery ↓</a><a class="birthday-button birthday-secondary" href="#birthday-gift">Send a Birthday Gift ♡</a></div>
       </div>
-
-      <div class="hero-side">
-        GALLERY / 2026
-      </div>
-
     </section>
-
+    <section class="birthday-collection" aria-labelledby="birthday-collection-title">
+      <p class="birthday-kicker">A PRIVATE CELEBRATION</p>
+      <h2 id="birthday-collection-title">The Birthday Collection</h2>
+      <p class="birthday-caption">Pink satin · Silver diamonds · Cinematic nights</p>
+      <div class="birthday-cards">
+        <figure><img src="./birthday/Moody%20Birthday%20Queen%20Celebration.png" alt="Moody birthday queen portrait" loading="lazy" width="1024" height="1536"><figcaption>After Dark</figcaption></figure>
+        <figure><img src="./birthday/Glamorous%20Birthday%20Month%20Portrait.png" alt="Glamorous birthday month portrait" loading="lazy" width="1024" height="1536"><figcaption>Birthday Muse</figcaption></figure>
+        <figure><img src="./birthday/Glamorous%20Birthday%20Month%20Website%20Update.png" alt="Diamond edition birthday celebration" loading="lazy" width="1024" height="1536"><figcaption>The Diamond Edition</figcaption></figure>
+      </div>
+      <div id="birthday-gift" class="birthday-gift">
+        <p class="birthday-kicker">♡ A BIRTHDAY WISH ♡</p>
+        <h2>Spoil the Birthday Girl</h2>
+        <p>Want to make my birthday month a little more special?<br>A little birthday love goes a long way.</p>
+        <a class="birthday-button" href="https://buy.stripe.com/5kQ8wP1u58Wk6lE6FY7kc0r" target="_blank" rel="noopener noreferrer">🎁 Send a Birthday Gift ↗</a>
+        <small>Gifts are optional and do not purchase gallery access.</small>
+      </div>
+    </section>
 
     <!-- ==============================
          RECENTLY ADDED
