@@ -80,13 +80,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "video8.mp4",
     "video9.mp4",
     "video10.mp4",
-    "video11.mp4",
-    "video12.mp4",
     "video13.mp4",
 
-    "video20.mp4",
-    "video21.mp4",
-    "video22.mp4",
     "video23.mp4"
 
   ];
@@ -116,10 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
       file: "video23.mp4"
     },
 
-    {
-      type: "video",
-      file: "video22.mp4"
-    },
 
     {
       type: "image",
@@ -152,7 +143,6 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   const VIDEO_PATHS = [
-    "videos/folder/",
     "videos/",
     ""
   ];
