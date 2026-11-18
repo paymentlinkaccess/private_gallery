@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   "use strict";
 
-  console.log("PRIVATE GALLERY VERSION 32 LOADED");
+  console.log("PRIVATE GALLERY VERSION 33 LOADED");
 
 
   /* =====================================================
@@ -917,7 +917,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(
       "Private Gallery loaded",
       {
-        version: 32,
+        version: 33,
         recent:
           recentlyAdded.length,
         photos:
